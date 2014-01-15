@@ -11,7 +11,7 @@ Sorry, the gifs are recorded at a low FPS. The games are both actually extremely
 
 ## Running in XNA
 
-Open up XNA.sln (if you have XNA installed) to run this demo locally.
+Open up XNA.sln (if you have XNA installed) to run this demo locally. This gif may look a little funny because the paddles (the big rectangles) are actually being simulated as circles.
 
 ![The game running in XNA](demo_xna.gif)
 
