@@ -22,7 +22,7 @@ There are four folders.
 - `Assets`: A snapshot.json and templates.json file that will allow you to start up a simple game. These inject systems and data values into the engine. Feel free to look at the JSON files; they describe the serialization format of the game. Forge save games will be serialized into another snapshot.json. One way of viewing the `Unity` editor is a designer of save-game files, and when you start a new game you're really just loading a saved file.
 - `GameLogic`: Game logic that is independent from any framework. This builds directly on top of Forge APIs and implements the gameplay.
 - `Unity`: Integration into the Unity game engine. This requires the Forge Unity plug-in, which will be available soon.
-- `XNA`: Integration into XNA/MonoGame. This currently uses an unpublished version of the XNA Forge bindings, which will be made available soon.
+- `XNA`: Integration into XNA/MonoGame. This currently uses the unpolished XNA Forge bindings (they are found in the Forge directory under XNA).
 
 # Concepts
 
