@@ -24,30 +24,16 @@ There are four folders.
 - `Unity`: Integration into the Unity game engine. This requires the Forge Unity plug-in, which will be available soon.
 - `XNA`: Integration into XNA/MonoGame. This currently uses an unpublished version of the XNA Forge bindings, which will be made available soon.
 
-# Game Logic Files
+# Concepts
 
-The `GameLogic` folder contains the interesting game-specific code.
+`Forge` has a couple core concepts which allow the magic to happen. They are immutability, data, systems, and events.
 
-`BallCollisionSystem` causes balls to reverse direction when they hit entities with `PaddleData`.
+In regards to immutability, and speaking very roughly, there are 3 game states in memory at all times that you game can work with; the previous state, the current state, and the future state. The previous and current states are read-only, while the future state is write-only. Systems can be notified that a data instance has been modified and then it can query the previous state to see what it's old value was. This is one of the ways in which initialization/update order are solved.
 
-`BallData` defines what a ball is, and contains data that causes collision response to be temporarily disabled when a ball hits a paddle.
+The game is composed of `IEntities` which contain `IData` instances (there are a variety of IData flavors, from ones which are Versioned (they support querying their previous states), to NonVersioned, which do not support querying, and Concurrent variants, which allow multiple writes in the same update). A data type can be something simple like your entities health or perhaps its position. Crucially, _data types contain no game logic_.
 
-`BallSpawningData` is data that is stored in the `GlobalEntity` that the `BallSpawningSystem` uses to spawn balls.
+Game logic goes into `ISystems`, which are executed concurrently on multiple threads. `ISystems` can listen for a number of `Triggers`, such as when an entity has been added. Further, they can express interest in only certain types of entities, for example, a `MovementSystem` can request only entities which have `MovementData` and `PositionData`. Some of the triggers are pretty nifty, such as `Trigger.Modified`, which allows a system to be notified whenever an entity that it contains is modified (for example, the entity's position has changed). The immutability system then allows the system to query the old position even while systems are processing the entities new position.
 
-`BallSpawningSystem` instantiates an `ITemplate` (that is defined in `snapshot.json` and `templates.json`) which is defined as a ball.
+`ISystems` do *not* deal with rendering any of the game state. Instead, the events API is used to notify the 3rd party renderer about how the simulation state has changed. Almost all of the busy work here is automated by the Unity/XNA integration packages.
 
-`MapBoundsData` defines the size of the map and is only contained on the `GlobalEntity`.
-
-`MovementData` defines a velocity for an entity so that it can move around the map.
-
-`MovementSystem` takes entities with both `PositionData` and `MovementData` and moves them.
-
-`PaddleCollectionSystem` merely collects all entities that have `PaddleData`. This system is used by the `BallCollisionSystem`.
-
-`PaddleData` tags entities so that the `PaddleCollectionSystem` will contain said entity,
-
-`PositionData` defines the position of an entity on the map.
-
-`TemporaryData` gives an entity a limited lifetime; after a certain number of ticks, the `TemporarySystem` will destroy it.
-
-`TemporarySystem` destroys entities whose `TemporaryData` has reached 0. This system also demos input; `StopDestroyingInput` disables destroying entities and `StartDestroyingInput` enables destroying entities. Actually sending the input into the game is engine specific (as it depends on the input layer); in the XNA sample pressing the 1 key enables destruction and the 2 key disables it.
+Additionally, most games need to create new entities at runtime; `ITemplates` are preconfigured entities which can be instantiated at runtime. They are similar in nature to Unity's prefabs. `ITemplates` are the only way to create new `IEntity` instances at runtime.
