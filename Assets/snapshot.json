@@ -1,0 +1,178 @@
+{
+  "EntityIdGenerator": {
+    "NextId": 4
+  },
+  "GlobalEntity": [
+    {
+      "UniqueId": 0,
+      "PrettyName": "Global Entity",
+      "Data": [
+        {
+          "WasAdded": true,
+          "DataType": "Forge.PrefabData",
+          "CurrentData": {
+            "PrefabResourcePath": "WorldPrefab"
+          }
+        },
+        {
+          "WasAdded": true,
+          "DataType": "GameSample.MapBoundsData",
+          "CurrentData": {
+            "Width": 13,
+            "Height": 7
+          }
+        },
+        {
+          "WasAdded": true,
+          "DataType": "GameSample.BallSpawningData",
+          "CurrentData": {
+            "MaxTicks": 25,
+            "MinTicks": 10,
+            "Remaining": 0,
+            "Ball": {
+              "ReferencedId": 10000,
+              "ReferenceType": "TemplateReference"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "AddedEntities": [
+    {
+      "UniqueId": 2,
+      "PrettyName": "Paddle1",
+      "Data": [
+        {
+          "WasAdded": true,
+          "DataType": "Forge.PrefabData",
+          "CurrentData": {
+            "PrefabResourcePath": "PaddlePrefab"
+          }
+        },
+        {
+          "WasAdded": true,
+          "DataType": "GameSample.PositionData",
+          "CurrentData": {
+            "Position": {
+              "X": 5.0,
+              "Z": 0.0,
+              "Radius": 3.0
+            }
+          },
+          "PreviousData": {
+            "Position": {
+              "X": 0.0,
+              "Z": 0.0,
+              "Radius": 0.0
+            }
+          }
+        },
+        {
+          "WasAdded": true,
+          "DataType": "GameSample.MovementData",
+          "CurrentData": {
+            "Velocity": {
+              "X": 0.0,
+              "Z": 0.100097656
+            }
+          },
+          "PreviousData": {
+            "Velocity": {
+              "X": 0.0,
+              "Z": 0.0
+            }
+          }
+        },
+        {
+          "WasAdded": true,
+          "DataType": "GameSample.PaddleData",
+          "CurrentData": {}
+        }
+      ]
+    },
+    {
+      "UniqueId": 3,
+      "PrettyName": "Paddle2",
+      "Data": [
+        {
+          "WasAdded": true,
+          "DataType": "Forge.PrefabData",
+          "CurrentData": {
+            "PrefabResourcePath": "PaddlePrefab"
+          }
+        },
+        {
+          "WasAdded": true,
+          "DataType": "GameSample.PositionData",
+          "CurrentData": {
+            "Position": {
+              "X": -5.0,
+              "Z": 0.0,
+              "Radius": 3.0
+            }
+          },
+          "PreviousData": {
+            "Position": {
+              "X": 0.0,
+              "Z": 0.0,
+              "Radius": 0.0
+            }
+          }
+        },
+        {
+          "WasAdded": true,
+          "DataType": "GameSample.MovementData",
+          "CurrentData": {
+            "Velocity": {
+              "X": 0.0,
+              "Z": -0.100097656
+            }
+          },
+          "PreviousData": {
+            "Velocity": {
+              "X": 0.0,
+              "Z": 0.0
+            }
+          }
+        },
+        {
+          "WasAdded": true,
+          "DataType": "GameSample.PaddleData",
+          "CurrentData": {}
+        }
+      ]
+    }
+  ],
+  "ActiveEntities": [],
+  "RemovedEntities": [],
+  "Systems": [
+    {
+      "Type": "GameSample.PaddleCollectionSystem",
+      "System": {
+        "$id": "1",
+        "Paddles": []
+      }
+    },
+    {
+      "Type": "GameSample.BallCollisionSystem",
+      "System": {
+        "_paddles": {
+          "$ref": "1"
+        }
+      }
+    },
+    {
+      "Type": "GameSample.MovementSystem",
+      "System": {}
+    },
+    {
+      "Type": "GameSample.BallSpawningSystem",
+      "System": {}
+    },
+    {
+      "Type": "GameSample.TemporarySystem",
+      "System": {}
+    }
+  ]
+}

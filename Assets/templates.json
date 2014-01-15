@@ -1,0 +1,40 @@
+{
+  "Templates": [
+    {
+      "TemplateId": 10000,
+      "PrettyName": "Ball",
+      "DefaultDataInstances": [
+        {
+          "$type": "Forge.PrefabData",
+          "PrefabResourcePath": "BallPrefab"
+        },
+        {
+          "$type": "GameSample.PositionData",
+          "Position": {
+            "X": 0.0,
+            "Z": 0.0,
+            "Radius": 0.300048828
+          }
+        },
+        {
+          "$type": "GameSample.MovementData",
+          "Velocity": {
+            "X": 0.300048828,
+            "Z": 0.199951172
+          }
+        },
+        {
+          "$type": "GameSample.BallData",
+          "CollisionDisabled": 0
+        },
+        {
+          "$type": "GameSample.TemporaryData",
+          "TicksRemaining": 50
+        }
+      ]
+    }
+  ],
+  "TemplateIdGenerator": {
+    "NextId": 10001
+  }
+}

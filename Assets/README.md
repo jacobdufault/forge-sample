@@ -1,0 +1,3 @@
+`snapshot.json` is a saved game that contains some interesting initial data, such as where the paddles are and the dimensions of the map. Currently the `PrefabData` instances are only used for the Unity version, but if the XNA version implemented more sophisticated rendering it would also be used.
+
+`templates.json` contains the definition of a ball. The data serialization format here is going to change slightly in an upcoming patch to mirror that of `snapshot.json` (you won't see "$type" anymore). 
