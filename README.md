@@ -37,3 +37,6 @@ Game logic goes into `ISystems`, which are executed concurrently on multiple thr
 `ISystems` do *not* deal with rendering any of the game state. Instead, the events API is used to notify the 3rd party renderer about how the simulation state has changed. Almost all of the busy work here is automated by the Unity/XNA integration packages.
 
 Additionally, most games need to create new entities at runtime; `ITemplates` are preconfigured entities which can be instantiated at runtime. They are similar in nature to Unity's prefabs. `ITemplates` are the only way to create new `IEntity` instances at runtime.
+
+## License
+This sample is freely available under the MIT license.
